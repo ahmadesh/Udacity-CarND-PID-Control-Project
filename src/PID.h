@@ -20,19 +20,19 @@ public:
   double Ki;
   double Kd;
 
-  bool run_twiddle;
-  int count;
+  bool run_twiddle; 
+  int count; //counter
   double sum_cte;
   double best_sum_cte;
-  double p[3];
+  double p[3]; // Kp/Ki/Kd
   double dp[3];
-  bool inc_check;
-  bool dec_check;
-  unsigned int ind;
-  int data_start;
-  int data_end;
-    // server
-    uWS::WebSocket<uWS::SERVER> server;
+  bool inc_check; //check increasing
+  bool dec_check; //chekc decreasing
+  unsigned int ind; // index of p[3] Kp/Ki/Kd
+  int data_start; // start of getting data
+  int data_end; // end of getting data
+  // server
+  uWS::WebSocket<uWS::SERVER> server;
 
   /*
   * Constructor

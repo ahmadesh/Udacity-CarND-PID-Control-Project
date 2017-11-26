@@ -22,7 +22,7 @@ void PID::Init(double Kp, double Ki, double Kd) {
     this->Ki = Ki;
     this->Kd = Kd;
     
-    run_twiddle = true;
+    run_twiddle = false;
     p[0] = Kp;
     p[1] = Ki;
     p[2] = Kd;
@@ -34,7 +34,7 @@ void PID::Init(double Kp, double Ki, double Kd) {
     best_sum_cte = -1; //initial best cte
     inc_check = false; // check increasing K
     dec_check = false; // check decreasing K
-    ind = 2; // run on Kp/Kd/Ki
+    ind = 2; // run on Kp/Ki/Kd
     data_start = 1000; // start count for summing error
     data_end = 2000; // end count for summing error
 }
