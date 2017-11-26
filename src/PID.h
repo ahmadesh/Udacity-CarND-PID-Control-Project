@@ -1,6 +1,10 @@
 #ifndef PID_H
 #define PID_H
 
+#include <uWS/uWS.h>
+
+using namespace std::chrono;
+
 class PID {
 public:
   /*
@@ -15,6 +19,20 @@ public:
   double Kp;
   double Ki;
   double Kd;
+
+  bool run_twiddle;
+  int count;
+  double sum_cte;
+  double best_sum_cte;
+  double p[3];
+  double dp[3];
+  bool inc_check;
+  bool dec_check;
+  unsigned int ind;
+  int data_start;
+  int data_end;
+    // server
+    uWS::WebSocket<uWS::SERVER> server;
 
   /*
   * Constructor
@@ -40,6 +58,16 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+    
+  void twiddle();
+    
+    /*
+     * Restarts simulator.
+     */
+  void RestartSim(uWS::WebSocket<uWS::SERVER> ws);
+
+  void SetServer(uWS::WebSocket<uWS::SERVER> ws);
+
     
 private:
   //error from previos step
